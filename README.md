@@ -16,8 +16,9 @@ A one-click [Railway](https://railway.com) template for [Agent Zero](https://git
 |---|---|---|
 | `AUTH_LOGIN` | `admin` | Web UI user name. |
 | `AUTH_PASSWORD` | generated, 32 characters | Web UI password. Copy it from the service's Variables tab after deploying. |
-| `API_KEY_OPENROUTER` | empty, optional | OpenRouter key. Agent Zero's default model preset uses OpenRouter, so with this set you can chat right away. Other providers' keys can be added under Settings. |
 | `PORT` | `80` | The port Agent Zero listens on. Don't change it. |
+
+Model provider keys (OpenRouter, OpenAI, Anthropic, Ollama and others) are entered under **Settings** after you log in and are saved on the volume; you can also add them as `API_KEY_<PROVIDER>` variables (for example `API_KEY_OPENROUTER`).
 
 The agent can run any command inside its container, so this template never runs it without a login: `railway-start.sh` stops the service with a clear log message if `AUTH_LOGIN` or `AUTH_PASSWORD` is empty.
 
