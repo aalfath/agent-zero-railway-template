@@ -9,6 +9,13 @@ USR_DIR=/a0/usr
 ENV_FILE="$USR_DIR/.env"
 mkdir -p "$USR_DIR"
 
+# Agent Zero loads /a0/usr/.env over the environment. An empty AUTH_LOGIN/AUTH_PASSWORD saved there
+# (for example by clearing them under Settings) would switch the login off, so drop empty ones and let
+# the Railway variables apply again.
+if [ -f "$ENV_FILE" ]; then
+  sed -i -E '/^[[:space:]]*AUTH_(LOGIN|PASSWORD)[[:space:]]*=[[:space:]]*("")?[[:space:]]*$/d' "$ENV_FILE"
+fi
+
 # Login check: Railway variables, or a login saved later under Settings (kept in /a0/usr/.env).
 saved_login=""
 if [ -f "$ENV_FILE" ]; then
