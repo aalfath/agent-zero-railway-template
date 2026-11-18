@@ -32,4 +32,6 @@ if ! grep -q '^A0_PERSISTENT_RUNTIME_ID=' "$ENV_FILE" 2>/dev/null; then
   echo "[railway-start] created a persistent runtime id in $ENV_FILE"
 fi
 
+python3 /railway-clean-venv.py || true
+
 exec /exe/initialize.sh "${BRANCH:-main}"
